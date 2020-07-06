@@ -243,10 +243,10 @@
         "avoid-escape"
       ],
       "radix": 2,
-      "jsx-quotes": [
-        2,
-        "prefer-single"
-      ],
+      // "jsx-quotes": [
+      //   2,
+      //   "prefer-single"
+      // ],
       "jsx-a11y/click-events-have-key-events": 0,
       "jsx-a11y/no-noninteractive-element-interactions": 0,
       "jsx-a11y/media-has-caption": 0,
@@ -286,7 +286,7 @@
       "react/prefer-stateless-function": 0,
       "react/require-default-props": 0,
       "react/react-in-jsx-scope": 2,
-      "react/self-closing-comp": 2,
+      // "react/self-closing-comp": 2,
       "react/sort-comp": 0,
       "react/jsx-wrap-multilines": 2,
       "semi-spacing": 0,
