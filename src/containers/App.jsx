@@ -1,31 +1,20 @@
 /* eslint-disable arrow-parens */
 /* eslint-disable implicit-arrow-linebreak */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import Search from '../components/Search';
 import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
 import Footer from '../components/Footer';
+import useInitialState from '../hoooks/useInitialState';
 import '../assets/styles/App.scss';
+
+const API = 'http://localhost:3000/initalState';
 
 const App = () => {
 
-  // la primera posicion es el valor de nuestro estado y la segunda la funcicón que nos permite actualizar ese valor
-  // es un array de 2 elementos
-  // está destructurado
-  const [videos, setVideos] = useState({ mylist: [], trends: [], originales: [] });
-
-  // nos permite ejecutar codigo cuando se monta, desmonta o actualiza nuestro componente
-  useEffect(() => {
-    fetch('http://localhost:3000/initalState')
-      .then((response) => response.json())
-      .then((data) => setVideos(data));
-  // enviar el array vacio para que solo se ejecute una vez que se monte el componente
-  }, []);
-
-  // se puede pasar el valor del estado como el de un state normal , {videos}
-  // console.log(videos);
+  const initialState = useInitialState(API);
 
   return (
     <div className="App">
@@ -33,7 +22,8 @@ const App = () => {
       <Search />
 
       {
-        videos.mylist.length > 0 && (
+        // si existe my list y ademas la logitud es mayor que 0, pintalo
+        initialState.mylist.length > 0 && (
           // eslint-disable-next-line react/jsx-wrap-multilines
           <Categories title="Mi lista">
             <Carousel>
@@ -45,7 +35,8 @@ const App = () => {
 
       <Categories title="Tendencias">
         <Carousel>
-          {videos.trends.map(item =>
+          {/* recocrre con map los items del json trends, el key es el item id y trae los props de la destruccturacion de item en el jason */}
+          {initialState.trends.map(item =>
             // eslint-disable-next-line react/jsx-props-no-spreading
             <CarouselItem key={item.id} {...item} />,
           // eslint-disable-next-line function-paren-newline
@@ -54,7 +45,11 @@ const App = () => {
       </Categories>
       <Categories title="Originales">
         <Carousel>
-          <CarouselItem />
+          {initialState.originals.map(item =>
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            <CarouselItem key={item.id} {...item} />,
+            // eslint-disable-next-line function-paren-newline
+          )}
         </Carousel>
       </Categories>
       <Footer />
