@@ -32,7 +32,7 @@ const Home = ({ myList, trends, originals }) => {
               {/* recocrre con map los items del json trends, el key es el item id y trae los props de la destruccturacion de item en el jason */}
               {myList.map(item =>
                 // eslint-disable-next-line react/jsx-props-no-spreading
-                <CarouselItem key={item.id} {...item} />,
+                <CarouselItem key={item.id} {...item} isList />,
               // eslint-disable-next-line function-paren-newline
               )}
             </Carousel>
