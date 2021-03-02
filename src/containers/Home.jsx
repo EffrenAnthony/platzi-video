@@ -32,7 +32,14 @@ const Home = ({ myList, trends, originals }) => {
               {/* recocrre con map los items del json trends, el key es el item id y trae los props de la destruccturacion de item en el jason */}
               {myList.map(item =>
                 // eslint-disable-next-line react/jsx-props-no-spreading
-                <CarouselItem key={item.id} {...item} isList />,
+                // eslint-disable-next-line react/jsx-wrap-multilines
+                <CarouselItem
+                  key={item.id}
+                  // eslint-disable-next-line react/jsx-props-no-spreading
+                  {...item}
+                  // con islist le indicamos que es verdadero, en otras palabras lo asignamos como verdadero o falseo
+                  isList={true}
+                />,
               // eslint-disable-next-line function-paren-newline
               )}
             </Carousel>
@@ -64,6 +71,7 @@ const Home = ({ myList, trends, originals }) => {
 };
 // export default connect(props, actions)(Home);
 // llamo los elementos que vamos a trabajar
+// aqui traermos los elementos del estado inicial desde nuestro store
 const mapStateToProps = state => {
   return {
     myList: state.myList,
@@ -72,4 +80,5 @@ const mapStateToProps = state => {
   };
 };
 
+// aca indicamos que le pasamos el mapo de las props, acctions null y a la función o componente al que va a afectar en sus props
 export default connect(mapStateToProps, null)(Home);

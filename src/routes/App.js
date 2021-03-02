@@ -5,6 +5,7 @@ import Login from '../containers/Login';
 import Register from '../containers/Register';
 import NotFound from '../containers/NotFound';
 import Layout from '../components/Layout';
+import Player from '../components/Player';
 
 const App = () => (
   <BrowserRouter>
@@ -13,6 +14,7 @@ const App = () => (
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
+        <Route exact path="/player/:id" component={Player} />
         {/* si no hay ruta, hará render de este coponente */}
         <Route component={NotFound} />
       </Switch>
