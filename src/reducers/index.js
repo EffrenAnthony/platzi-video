@@ -60,6 +60,23 @@ const reducer = (state, action) => {
                 state.originals.find((item) => item.id === Number(action.payload)) ||
                 [],
       };
+    case 'GET_RESULT_OF_SEARCH':
+      if (action.payload === '') return { ...state, searchResult: [] };
+
+      // eslint-disable-next-line no-case-declarations
+      const listas = [...state.trends, ...state.originals];
+
+      return {
+        ...state,
+        searchResult: listas.filter((item) => item.title.toLowerCase().includes(action.payload.toLowerCase())),
+      };
+      // return {
+      //   ...state,
+      //   // para saber si tenemos o no el item que no cumpla con la condición
+      //   searchResult: state.trends.filter((item) => item.title.toLowerCase().includes(action.payload.toLowerCase())),
+      //   // ||
+      //   //         state.originals.filter((item) => item.title === action.payload),
+      // };
     default:
       return state;
   }
